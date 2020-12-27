@@ -23,6 +23,8 @@ The following sensors are used in the project. Multiple open-source libraries ca
 
 Notes:  Winsen MHZ19C and Bosch BME680 in process to be tested.
 
+For occupancy indication and NDIR based sensor is more reliable. A TVOC is good to detect chemicals (e.g. cleaning products) that can be a plus depending on the application you want to cover.
+
 ### Wifi
 
 The AQS-X01 is compatible with the board ESP8266-01 (https://en.wikipedia.org/wiki/ESP8266)
