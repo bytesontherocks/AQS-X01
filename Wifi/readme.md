@@ -2,7 +2,7 @@
 
 ## Serial Port
 
-The AQS-X01 communicates with the ESP8622 using a UART port. 
+The AQS-X01 communicates with the ESP8266 using a UART port. 
 
 In the binaries provided the serial port is configured as follows:
 
