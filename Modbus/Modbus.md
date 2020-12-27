@@ -54,7 +54,13 @@ The holding registers are written in non-volatile. After editing them allow 10 s
     - 0x01: Odd
     - 0x02: Even
 
+## Changing Sht31TemperatureOffset
 
+AQS-X01 accounts for a self-heating offset  (Sht31TemperatureOffset) and subtract it to the temperature reading from the SHT31 and applies a correction to the humidity value: `RH2 = RH1*exp(4283.78*(t1-t2)/(243.12+t1)/(243.12+t2));`
+
+https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Application_Note/Sensirion_Humidity_Sensors_at_a_Glance.pdf
+
+The value is left configurable to allow different configuration or strategies (e.g. ESP8266 ).
 
 ## Changing the ESP8266 reset period
 
