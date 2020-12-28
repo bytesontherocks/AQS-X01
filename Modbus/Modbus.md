@@ -20,8 +20,8 @@
 | 5       | eCO2         | Value read from the MOX sensor (every 1s)              | 400-60000 | ppm       |
 | 6       | TVOC Average | 1 minute rolling average from the MOX TVOC value       | 0-60000   | ppb       |
 | 7       | eCO2 Average | 1 minute rolling average from the MOX eCO2 value       | 400-60000 | ppm       |
-| 8       | TVOC base    | Value read from the MOX sensor (every 12h)             |           |           |
-| 9       | eCO2 base    | Value read from the MOX sensor (every 12h)             |           |           |
+| 8       | TVOC base    | Value read from the MOX sensor (every 24h)             |           |           |
+| 9       | eCO2 base    | Value read from the MOX sensor (every 24h)             |           |           |
 | 10      | Ethanol Raw  | Value read from the MOX sensor (every 1s)              |           | ppm       |
 | 11      | H2 Raw       | Value read from the MOX sensor (every 1s)              |           | ppm       |
 | 12      | FwVersion    | Reports the firmware version of the device             |           | MM.mm     |
