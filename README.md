@@ -1,5 +1,5 @@
 # AQS-X01
-Material related to AQS-X01 device
+Material related to AQS-X01 device: https://www.tindie.com/products/bytesontherocks/air-quality-platform-co2/
 
 ## Material
 
