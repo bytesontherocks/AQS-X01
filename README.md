@@ -23,7 +23,11 @@ The following sensors are used in the project. Multiple open-source libraries ca
 
 Notes:  Winsen MHZ19C and Bosch BME680 in process to be tested.
 
+###### Notes about NDIR CO2 and TVOC sensors:
+
 For occupancy indication an NDIR based sensor is more reliable. A TVOC based sensor can give an idea about air quality if, a part of CO2 we are concern about other gases (e.g. cleaning products) that can be a plus depending on the application you want to cover.
+
+Both sensors are ABC calibrated (https://www.co2meter.com/blogs/news/7512282-co2-sensor-calibration-what-you-need-to-know), so they need to be exposed to fresh air conditions every day. For the SGP30 the base is saved to non-volatile every 24h.
 
 ### Wifi
 
