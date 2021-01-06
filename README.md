@@ -29,6 +29,26 @@ For occupancy indication an NDIR based sensor is more reliable. A TVOC based sen
 
 Both sensors are ABC calibrated (https://www.co2meter.com/blogs/news/7512282-co2-sensor-calibration-what-you-need-to-know), so they need to be exposed to fresh air conditions every day. For the SGP30 the base is saved to non-volatile every 24h.
 
+###### Notes about measuring temperature and humidity:
+
+Measuring temperature and humidity accurately inside an enclosure with different heat sources is not easy even if the temperature sensor position and design follows the "best practices notes". The binaries provided have a temperature offset to account for the board self-heating. The self-heating correction can be tweaked through Modbus. Correcting the temperature is a direct subtraction to the measured value. The humidity is also corrected applying the following formula:  
+
+```
+RH1*exp(4283.78*(t1-t2)/(243.12+t1)/(243.12+t2));
+```
+
+https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Application_Note/Sensirion_Humidity_Sensors_at_a_Glance.pdf
+
+Things to consider:
+
+- The ESP8266-01 is a source of heat, when is in normal operation will increase the measured temperature for more than 3'C. This is why it is recommended to use the ESP8266-01 in sleep mode and the example provided is putting the ESP to deep sleep.
+
+- The SGP30 is measuring the gases heating up a plate. That is generating heat and there is no sleep mode in this sensor other than removing power.
+
+  If it is desired to have the SGP30 and the SHT31 in the same device, the temperature will have to be offset by several degrees.
+
+In the current binary demos, the self-heating coefficient is a constant value to substract from the temperature read. If the self-heating factor changes related to the behavior of your application you will need to average it or find a complex way to track it and apply the correction to your device.
+
 ### Wifi
 
 The AQS-X01 is compatible with the board ESP8266-01 (https://en.wikipedia.org/wiki/ESP8266)
