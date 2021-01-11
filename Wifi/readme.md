@@ -1,4 +1,4 @@
-# AQS-X01 communications with ESP6266-01
+# AQS-X01 communications with ESP8266-01
 
 ## Serial Port
 
