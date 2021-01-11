@@ -25,6 +25,8 @@ The serial protocol used has been Modbus RTU. The CRC is calculated following th
 
 The ESP8266 is quite power hungry and even if the current consumed it can be provided for the regulator on board, with the ESP8266 running constantly the board heats up several degrees Celsius making it more difficult to have a reliable temperature reading (and humidity in consequence).
 
+Note: If measuring temperature/humidity is not a concern for you there is no need to put the ESP to sleep.
+
 It is recommended to put the ESP8266 in deep sleep and let the AQS-X01 to wake it up when required following the following flow diagram:
 
 ![](ESP8266_comms.jpg)
