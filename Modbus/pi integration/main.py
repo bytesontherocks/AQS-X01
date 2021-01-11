@@ -24,7 +24,8 @@ def main():
     instrument = minimalmodbus.Instrument(Configuration.serialPortId, Configuration.deviceAddress, minimalmodbus.MODE_RTU)
     instrument.serial.baudrate = Configuration.baudrate
     instrument.serial.timeout = Configuration.timeout
-    instrument.serial.parity  = Configuration.parity  
+    instrument.serial.parity  = Configuration.parity
+    instrument.serial.stopbits = Configuration.stopbits    
     instrument.debug = False
     instrument.precalculate_read_size = True
 
