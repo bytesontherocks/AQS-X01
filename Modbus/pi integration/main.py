@@ -10,6 +10,7 @@ import Configuration
 import Sht31
 import Co2
 import Sgp30
+import AQSX01_Conf
 
 # Allow long also in Python3
 # http://python3porting.com/noconv.html
@@ -46,7 +47,28 @@ def main():
     text += '###############################################################\n'
     minimalmodbus._print_out(text)
     instrument.debug = False
-
+    
+#    AQSX01_Conf.getGreenAmberThreshold(instrument)    
+#    AQSX01_Conf.getAmberRedThreshold(instrument)
+#    AQSX01_Conf.getSlaveAddress(instrument)
+#    AQSX01_Conf.getTemperatureOffset(instrument)    
+#    AQSX01_Conf.getEsp8266ResetPeriod(instrument)
+        
+#    temperatureOffset = 280    
+#    AQSX01_Conf.setTemperatureOffset(instrument, temperatureOffset)
+#    if AQSX01_Conf.getTemperatureOffset(instrument) == temperatureOffset:
+#        minimalmodbus._print_out('\ntemperatureOffset set correctly')
+#    else :
+#        minimalmodbus._print_out('\nerror writing the temperatureOffset')    
+    
+#    resetPeriod = 300#seconds
+#    AQSX01_Conf.setEsp8266ResetPeriod(instrument, resetPeriod)
+#    if AQSX01_Conf.getEsp8266ResetPeriod(instrument) == resetPeriod:
+#        minimalmodbus._print_out('\nresetPeriod set correctly')
+#    else :
+#        minimalmodbus._print_out('\nerror writing the resetPeriod')
+        
+        
     try:
         while True:     
 
