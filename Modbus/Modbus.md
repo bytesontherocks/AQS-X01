@@ -39,7 +39,7 @@ The holding registers are written in non-volatile. After editing them allow 10 s
 | 2       | SlaveAddress            | Modbus RTU Device address                                    | 1-248  |               | 51                  |
 | 3       | ModbusRTUSerialBaudrate | Modbus RTU serial port baudrate                              |        | bits/s (/100) | 1152 (115200bits/s) |
 | 4       | ModbusRTUSerialConf     | Modbus RTU serial port stop bit and parity                   |        |               | 0x0100              |
-| 5       | Sht31TemperatureOffset  | Compensation due to device self-heating                      |        | 'C(x100)      | 200 (2'C)           |
+| 5       | Sht31TemperatureOffset  | Compensation due to device self-heating                      |        | 'C(x100)      | 280 (2.8'C)           |
 | 6       | Esp8266HoldResetPeriod  | Period elapsed between successful replied message from ESP8622 and ESP8622 reset |        | s             | 300                 |
 
 
