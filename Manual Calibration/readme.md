@@ -22,7 +22,7 @@
 
 ![PB5 and GND](./DSC_0514_PB5.jpg)
 
-![Button connected to PB5 and GND](.\image-20210215204843137.png)
+![Button connected to PB5 and GND](./image-20210215204843137.png)
 
 
 
