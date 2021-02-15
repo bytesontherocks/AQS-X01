@@ -29,6 +29,8 @@ For occupancy indication an NDIR based sensor is more reliable. A TVOC based sen
 
 Both sensors are ABC calibrated (https://www.co2meter.com/blogs/news/7512282-co2-sensor-calibration-what-you-need-to-know), so they need to be exposed to fresh air conditions every day. For the SGP30 the base is saved to non-volatile every 24h.
 
+From Firmware version 1.1 manual calibration possibility has been added. Check manual calibration procedure.
+
 ###### Notes about measuring temperature and humidity:
 
 Measuring temperature and humidity accurately inside an enclosure with different heat sources is not easy even if the temperature sensor position and design follows the "best practices notes". The binaries provided have a temperature offset to account for the board self-heating. The self-heating correction can be tweaked through Modbus. Correcting the temperature is a direct subtraction to the measured value. The humidity is also corrected applying the following formula:  
