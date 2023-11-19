@@ -17,6 +17,9 @@ https://www.st.com/en/development-tools/stm32cubeide.html
 
 The following sensors are used in the project. Multiple open-source libraries can be found if you want to develop your own code.
 
+- Sensirion SCD4X (Acustic CO2)- https://www.sensirion.com/products/catalog/SCD40
+  Seamlessly compatible with https://www.tindie.com/products/modulefun/scd40-co2-sensor-breakout/
+
 - Winsen MHZ19B (NDIR CO2) - https://www.winsen-sensor.com/sensors/co2-sensor/mh-z19b.html
 - Sensirion SGP30 (TVOC) - https://www.sensirion.com/en/environmental-sensors/gas-sensors/sgp30/
 - Sensirion SHT31 - https://www.sensirion.com/en/environmental-sensors/humidity-sensors/digital-humidity-sensors-for-various-applications/
@@ -58,8 +61,6 @@ The AQS-X01 is compatible with the board ESP8266-01 (https://en.wikipedia.org/wi
 ### Modbus
 
 Information related to Modbus. E.g. Modbus Registers.
-
-
 
 ## Firmware binaries
 
