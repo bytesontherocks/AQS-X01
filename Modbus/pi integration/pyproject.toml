@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "aqs-x01-modbus"
+version = "0.1.0"
+description = ""
+authors = ["bytesontherocks <bytesontherocks@gmail.com>"]
+readme = "README.md"
+packages = [{include = "aqs_x01_modbus"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyserial = "^3.5"
+minimalmodbus = "^2.1.1"
+
+[tool.poetry.scripts]
+start = "aqs-x01-modbus.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

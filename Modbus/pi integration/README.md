@@ -15,3 +15,7 @@ Get the scripts in this folder. Edit Configuration.py with you usb port '/dev/tt
 
 You are ready to integrate the read data into your application.
 
+## Using poetry
+poetry install
+poetry run python main.py
+

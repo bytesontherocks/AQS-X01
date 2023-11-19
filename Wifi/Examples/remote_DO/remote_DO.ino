@@ -1,9 +1,9 @@
 #include <ESP8266WiFi.h>
-#include <PubSubClient.h>
+#include <ESP8266HTTPClient.h>
 #include "ModbusCrc.h"
 #include "ModbusRegisters.h"
 #include "credentials.h"
-#include "mqtt.h"
+#include <String>
 
 // Replace by 2 if you aren't enable to use Serial Monitor... Don't forget to Rewire R1 to GPIO2!
 #define in_led 0
@@ -14,73 +14,32 @@ char tempArray[10];
 char humArray[10];
 
 WiFiClient espClient;
-PubSubClient client;
+HTTPClient http;
+
+enum class RemoteDoState : bool
+{
+  DO_OFF = false,
+  DO_ON = true
+};
 
 void setup() {
   Serial.begin(115200);
   Serial.setTimeout(50);//ms
   setup_wifi();
-  client.setClient(espClient);
-  client.setServer(mqtt_server, mqtt_port);
-  client.setCallback(callback);
   
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(in_led, OUTPUT);
   digitalWrite(in_led, HIGH);
 }
-//
+
 void setup_wifi() {
-  delay(10);
-  // We start by connecting to a WiFi network
-  //Serial.println();
-  //Serial.print("Connecting to ");
-  //Serial.println(wifi_ssid);
+  delay(100);
 
   WiFi.begin(wifi_ssid, wifi_password);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    //Serial.print(".");
   }
-
-  //Serial.println("");
-  //Serial.println("WiFi connected");
-  //Serial.println("IP address: ");
-  //Serial.println(WiFi.localIP());
-}
-
-void reconnect() {
-  // Loop until we're reconnected//
-  while (!client.connected()) {
-    //Serial.print("Attempting MQTT connection...");
-    // Attempt to connect
-    // If you do not want to use a username and password, change next line to
-    //if (client.connect(uniqueClientID) {
-    if (client.connect(uniqueClientID, mqtt_user, mqtt_password)) {
-      //Serial.println("connected");
-    } else {
-      //Serial.print("failed, rc=");
-      //Serial.print(client.state());
-      //Serial.println(" try again in 5 seconds");
-      // Wait 5 seconds before retrying
-      delay(5000);
-    }
-  }
-}
-
-void callback(char* topic, byte* payload, unsigned int length) {
- //Serial.print("Message arrived [");
- //Serial.print(topic);
- //Serial.print("] ");
- for (int i = 0; i < length; i++) {
-  char receivedChar = (char)payload[i];
-  //Serial.print(receivedChar);
-  if (receivedChar == '0')
-   digitalWrite(in_led, LOW);
-  if (receivedChar == '1')
-   digitalWrite(in_led, HIGH);
- }
- //Serial.println();
 }
 
 uint16_t calculateCRC(uint8_t* message, uint8_t messageLength)
@@ -100,7 +59,75 @@ uint16_t calculateCRC(uint8_t* message, uint8_t messageLength)
   return( (crcMsb << 8) | crcLsb );
 }
 
-// get data from the AQS following the Modbus RTU protocol.
+
+const std::uint16_t min_level = 1000;
+const std::uint16_t max_level = 1500;
+
+// because we don't keep power to the board we don't have the previous state of the system
+// bool from_max_level = false;
+// void controlRemoteOutput(const std::uint16_t level)
+// {
+//   if (from_max_level)
+//   {
+//     if (level < min_level)
+//     {
+//       switchDO(false);
+//       from_max_level = false;
+  
+//     }
+//   } else {    
+//     if (level > max_level)
+//     {
+//       switchDO(true);
+//       from_max_level = true;
+//     }
+//   }
+// }
+
+
+void controlRemoteOutput(const std::uint16_t level)
+{
+  if (level > max_level)
+  {
+    switchDO( RemoteDoState::DO_ON);
+  } else 
+  {
+    if (level < min_level)
+    {
+      switchDO( RemoteDoState::DO_OFF);  
+    }
+  }
+}
+
+// Remote DO hardware specific: for this particular case Sonoff mini r2
+void switchDO(const RemoteDoState do_state)
+{
+  // e.g. "http://192.168.1.10:8081/zeroconf/switch"
+  String url_do_post = String("http://") + String(sonoff_ip_port) + String("/zeroconf/switch");
+  
+  http.begin(espClient, url_do_post);
+  http.addHeader("Content-Type", "application/json");
+  String sonoff_command = "";
+
+  if (do_state == RemoteDoState::DO_ON)
+  {
+    sonoff_command = "{\"deviceid\":\"\",\"data\":{\"switch\":\"on\"}}";
+    //Serial.println("Switch fan on");
+  } else {
+    sonoff_command = "{\"deviceid\":\"\",\"data\":{\"switch\":\"off\"}}";
+    //Serial.println("Switch fan off");
+  }
+
+  int httpResponseCode = http.POST(sonoff_command);
+
+   //Serial.print("HTTP Response code: ");
+  //Serial.println(httpResponseCode);
+    
+  // Free resources
+  http.end();
+}
+
+//get data from the AQS following the Modbus RTU protocol.
 void getDataFromAqs(void)
 {
 	// Slave address (ignored), Function Code (FC4- Input Registers), Starting Address MSB /LSB, Quantity of Registers MSB/ LSB, CRC MSB /LSB
@@ -115,7 +142,7 @@ void getDataFromAqs(void)
   #define maxReplyBytes 50
   static uint8_t reply[maxReplyBytes];
   uint8_t readBytes = Serial.readBytes(reply, maxReplyBytes);
-  
+
   if (readBytes) {
     
     uint16_t crcInMessage = (reply[readBytes-1] << 8) + reply[readBytes-2];
@@ -148,10 +175,9 @@ void getDataFromAqs(void)
       hum_str = String(fHum);
       hum_str.toCharArray(humArray, hum_str.length() + 1);
 
-      // Add here what data you want to publish
-      client.publish(co2_topic, String(co2Avrg).c_str(), true);
-      client.publish(temp_topic, tempArray);
-      client.publish(hum_topic, humArray);
+      //Serial.println("C02 level: ");
+      //Serial.println(eCo2Avg);
+      controlRemoteOutput(co2Avrg); // Fan control
 
       // allow finishing sending messages before shutting down. Would be better to have feedback from the library instead of open loop delay
       delay(1000);
@@ -162,16 +188,12 @@ void getDataFromAqs(void)
   }
 }
 
-void loop() {
-  if (!client.connected()) {
-    reconnect();
-  }
-  client.loop();
-
+void loop() 
+{
   //get data from the AQS and go to deep sleep after publishing the data
   getDataFromAqs();
-  
-  // If data has been obtaine and 'Esp8266HoldResetPeriod' seconds > than 0 we shouldn't reach this point because we are sleeping.
+
+  // If data has been obtained and 'Esp8266HoldResetPeriod' seconds > than 0 we shouldn't reach this point because we are sleeping.
   // However, if something hasn't work, retry in 1s
   delay(1000);
 }
