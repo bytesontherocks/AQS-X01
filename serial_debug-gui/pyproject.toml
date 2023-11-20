@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "aqs-x01-serial-debug-gui"
+version = "0.1.0"
+description = ""
+authors = ["bytesontherocks <bytesontherocks@gmail.com>"]
+readme = "README.md"
+packages = [{include = "aqs_x01_modbus"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyserial = "^3.5"
+minimalmodbus = "^2.1.1"
+tk = "^0.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
