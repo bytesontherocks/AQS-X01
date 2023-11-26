@@ -20,7 +20,9 @@ poetry install
 poetry run python main.py
 
 ## Running mypy
-poetry run mypy . --disallow-incomplete-defs
+Note: --strict flag is the strictest it can be but working with third party libraries may require to be more flexible
+
+poetry run mypy . --strict --ignore-missing-imports
 
 ## Running Ruff
 poetry run ruff check .
