@@ -1,11 +1,13 @@
 # AQS-X01 @ BytesOnTheRocks
 
 import time
-import minimalmodbus  
+import minimalmodbus
 import ModbusRegisters
 
 
-def getTemperatureAndHumidity(instrument: minimalmodbus.Instrument, delay: float) -> None:
+def getTemperatureAndHumidity(
+    instrument: minimalmodbus.Instrument, delay: float
+) -> None:
     time.sleep(delay)
     minimalmodbus._print_out("\nTemperature (degC):")
     minimalmodbus._print_out(

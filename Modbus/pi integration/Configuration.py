@@ -1,6 +1,7 @@
-import serial  
-#serialPortId: str = "/dev/ttyUSB0"  # Linux
-serialPortId: str   = 'COM5' #Windows
+import serial
+
+# serialPortId: str = "/dev/ttyUSB0"  # Linux
+serialPortId: str = "COM5"  # Windows
 
 deviceAddress: int = 51  # default device Address AQS-X01
 baudrate: int = 115200  # default baudrate AQS-X01

@@ -1,7 +1,7 @@
 # AQS-X01 @ BytesOnTheRocks
 
 import time
-import minimalmodbus  
+import minimalmodbus
 import ModbusRegisters
 
 

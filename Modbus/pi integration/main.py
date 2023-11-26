@@ -4,7 +4,7 @@
 import sys
 import time
 
-import minimalmodbus  
+import minimalmodbus
 
 import Configuration
 import Sht31
