@@ -26,4 +26,3 @@ poetry run mypy . --strict --ignore-missing-imports
 
 ## Running Ruff
 poetry run ruff check .
-

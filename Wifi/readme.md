@@ -2,12 +2,12 @@
 
 ## Serial Port
 
-The AQS-X01 communicates with the ESP8266 using a UART port. 
+The AQS-X01 communicates with the ESP8266 using a UART port.
 
 In the binaries provided the serial port is configured as follows:
 
 - Baudrate:115200 bits/s
-- 8 data bits 
+- 8 data bits
 - 1 Stop bit
 - No Parity
 - The timeout has been set to 50ms
@@ -19,7 +19,7 @@ Serial.setTimeout(50);
 
 ## Serial Protocol
 
-The serial protocol used has been Modbus RTU. The CRC is calculated following the Modbus RTU protocol and the device address is ignored at both ends for addressing but still included in the CRC calculation. 
+The serial protocol used has been Modbus RTU. The CRC is calculated following the Modbus RTU protocol and the device address is ignored at both ends for addressing but still included in the CRC calculation.
 
 ## Power Consumption
 
@@ -34,4 +34,3 @@ It is recommended to put the ESP8266 in deep sleep and let the AQS-X01 to wake i
 
 
 The woken up period can be edited using a Modbus register - Esp8266HoldResetPeriod
-

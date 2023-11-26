@@ -1,6 +1,6 @@
 ## Example
 
-An example is provided to show how to manage the communications with the AQS-X01. 
+An example is provided to show how to manage the communications with the AQS-X01.
 
 The example has been developed using Arduino IDE and common libraries for the ESP8266.
 

@@ -26,7 +26,7 @@ void setup() {
   Serial.begin(115200);
   Serial.setTimeout(50);//ms
   setup_wifi();
-  
+
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(in_led, OUTPUT);
   digitalWrite(in_led, HIGH);
@@ -73,9 +73,9 @@ const std::uint16_t max_level = 1500;
 //     {
 //       switchDO(false);
 //       from_max_level = false;
-  
+
 //     }
-//   } else {    
+//   } else {
 //     if (level > max_level)
 //     {
 //       switchDO(true);
@@ -90,11 +90,11 @@ void controlRemoteOutput(const std::uint16_t level)
   if (level > max_level)
   {
     switchDO( RemoteDoState::DO_ON);
-  } else 
+  } else
   {
     if (level < min_level)
     {
-      switchDO( RemoteDoState::DO_OFF);  
+      switchDO( RemoteDoState::DO_OFF);
     }
   }
 }
@@ -104,7 +104,7 @@ void switchDO(const RemoteDoState do_state)
 {
   // e.g. "http://192.168.1.10:8081/zeroconf/switch"
   String url_do_post = String("http://") + String(sonoff_ip_port) + String("/zeroconf/switch");
-  
+
   http.begin(espClient, url_do_post);
   http.addHeader("Content-Type", "application/json");
   String sonoff_command = "";
@@ -122,7 +122,7 @@ void switchDO(const RemoteDoState do_state)
 
    //Serial.print("HTTP Response code: ");
   //Serial.println(httpResponseCode);
-    
+
   // Free resources
   http.end();
 }
@@ -144,16 +144,16 @@ void getDataFromAqs(void)
   uint8_t readBytes = Serial.readBytes(reply, maxReplyBytes);
 
   if (readBytes) {
-    
+
     uint16_t crcInMessage = (reply[readBytes-1] << 8) + reply[readBytes-2];
     uint16_t crcInCalculated = calculateCRC(reply, readBytes - 2);
 
     if (crcInMessage == crcInCalculated) {
-      
+
       uint16_t co2        = (reply[3 + (InputRegisterCo2*2)]<<8) + reply[4 + (InputRegisterCo2*2)];
       uint16_t co2Avrg    = (reply[3 + (InputRegisterCo2Avg*2)]<<8) + reply[4 + (InputRegisterCo2Avg*2)];
       uint16_t temp       = (reply[3 + (InputRegisterTemp*2)]<<8) + reply[4 + (InputRegisterTemp*2)];
-      uint16_t hum        = (reply[3 + (InputRegisterHum*2)]<<8)   + reply[4 + (InputRegisterHum*2)];  
+      uint16_t hum        = (reply[3 + (InputRegisterHum*2)]<<8)   + reply[4 + (InputRegisterHum*2)];
       uint16_t tvoc       = (reply[3 + (InputRegisterTvoc*2)]<<8) + reply[4 + (InputRegisterTvoc*2)];
       uint16_t eCo2       = (reply[3 + (InputRegistereCo2*2)]<<8) + reply[4 + (InputRegistereCo2*2)];
       uint16_t tvocAvg    = (reply[3 + (InputRegisterTvocAvg*2)]<<8) + reply[4 + (InputRegisterTvocAvg*2)];
@@ -161,14 +161,14 @@ void getDataFromAqs(void)
       uint16_t tvocBase   = (reply[3 + (InputRegisterTvocBase*2)]<<8) + reply[4 + (InputRegisterTvocBase*2)];
       uint16_t eCo2Base   = (reply[3 + (InputRegistereCo2Base*2)]<<8) + reply[4 + (InputRegistereCo2Base*2)];
       uint16_t ethanolRaw = (reply[3 + (InputRegisterEthanolRaw*2)]<<8) + reply[4 + (InputRegisterEthanolRaw*2)];
-      uint16_t H2Raw      = (reply[3 + (InputRegisterH2Raw*2)]<<8) + reply[4 + (InputRegisterH2Raw*2)];            
-      uint16_t fwVersion  = (reply[3 + (InputRegisterFwVersion*2)]<<8)   + reply[4 + (InputRegisterFwVersion*2)];  
+      uint16_t H2Raw      = (reply[3 + (InputRegisterH2Raw*2)]<<8) + reply[4 + (InputRegisterH2Raw*2)];
+      uint16_t fwVersion  = (reply[3 + (InputRegisterFwVersion*2)]<<8)   + reply[4 + (InputRegisterFwVersion*2)];
 
       float fTemp = temp;
       fTemp /= 100;
       float fHum = hum;
       fHum /= 100;
-      
+
       temp_str = String(fTemp);
       temp_str.toCharArray(tempArray, temp_str.length() + 1);
 
@@ -181,14 +181,14 @@ void getDataFromAqs(void)
 
       // allow finishing sending messages before shutting down. Would be better to have feedback from the library instead of open loop delay
       delay(1000);
-	  
+
 	    // Go to sleep for 'Esp8266HoldResetPeriod' seconds (see Modbus Register documentation), when the period elapses the AQS will wake the ESP8266 up
       ESP.deepSleep(0);
-    }	
+    }
   }
 }
 
-void loop() 
+void loop()
 {
   //get data from the AQS and go to deep sleep after publishing the data
   getDataFromAqs();

@@ -7,7 +7,7 @@ Material related to AQS-X01 device: https://www.tindie.com/products/bytesonthero
 
 Find the board schematics in this section.
 
-The AQS-X01 is based on an STM32G0 microcontroller. To start developing code the CubeMX tool can be used to generate code automatically. The CubeMx project can be found in the hardware section. (*.ioc). A multiplatform IDE based on Eclipse and GCC is also available  from ST (STM32IDE) - it can be used to compile and debug (with st-link, j-link, etc.) 
+The AQS-X01 is based on an STM32G0 microcontroller. To start developing code the CubeMX tool can be used to generate code automatically. The CubeMx project can be found in the hardware section. (*.ioc). A multiplatform IDE based on Eclipse and GCC is also available  from ST (STM32IDE) - it can be used to compile and debug (with st-link, j-link, etc.)
 
 https://www.st.com/en/development-tools/stm32cubemx.html
 
@@ -36,7 +36,7 @@ From Firmware version 1.1 manual calibration possibility has been added. Check m
 
 ###### Notes about measuring temperature and humidity:
 
-Measuring temperature and humidity accurately inside an enclosure with different heat sources is not easy even if the temperature sensor position and design follows the "best practices notes". The binaries provided have a temperature offset to account for the board self-heating. The self-heating correction can be tweaked through Modbus. Correcting the temperature is a direct subtraction to the measured value. The humidity is also corrected applying the following formula:  
+Measuring temperature and humidity accurately inside an enclosure with different heat sources is not easy even if the temperature sensor position and design follows the "best practices notes". The binaries provided have a temperature offset to account for the board self-heating. The self-heating correction can be tweaked through Modbus. Correcting the temperature is a direct subtraction to the measured value. The humidity is also corrected applying the following formula:
 
 ```
 RH1*exp(4283.78*(t1-t2)/(243.12+t1)/(243.12+t2));
@@ -65,4 +65,3 @@ Information related to Modbus. E.g. Modbus Registers.
 ## Firmware binaries
 
 This section contains the binaries of the working demos for the device.
-

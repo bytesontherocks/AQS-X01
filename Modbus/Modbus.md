@@ -47,9 +47,9 @@ The holding registers are written in non-volatile. After editing them allow 10 s
 ## Changing the Serial Port Configuration
 
 - To change the baudrate write at this ModbusRTUSerialBaudrate register with the baudrate divided by 100. E.g. For 38400bit/s write 384. For 9600 bit/s write 96. etc.
-- Changing stop bits and parity. The default value is 0x0100. 
+- Changing stop bits and parity. The default value is 0x0100.
   - The Most Significative Byte is the Stop bit. 0x02 is 2 stop bits. 0x01 or whatever other value except 0x02 is 1 stop bit.
-  - The Less Sigificative Byte is the Parity. 
+  - The Less Sigificative Byte is the Parity.
     - 0x00: None (or any other value except 0x01 and 0x02)
     - 0x01: Odd
     - 0x02: Even
@@ -70,5 +70,4 @@ If set to 0 the reset is disabled.
 
 See further documentation for details.
 
-Look for extended document about how the AQS-X01 handles the communications with ESP8266. Basically, the power consumption of the ESP8266 heats up the board making the temperature and humidity reading offset by several degrees. However, if the ESP8266 is placed in deep sleep after receiving a message from the AQS-X01 
-
+Look for extended document about how the AQS-X01 handles the communications with ESP8266. Basically, the power consumption of the ESP8266 heats up the board making the temperature and humidity reading offset by several degrees. However, if the ESP8266 is placed in deep sleep after receiving a message from the AQS-X01

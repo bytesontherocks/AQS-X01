@@ -12,6 +12,7 @@ pyserial = "^3.5"
 minimalmodbus = "^2.1.1"
 mypy = "^1.7.1"
 ruff = "^0.1.6"
+pre-commit = "^3.5.0"
 
 [tool.poetry.scripts]
 start = "aqs-x01-modbus.main:main"

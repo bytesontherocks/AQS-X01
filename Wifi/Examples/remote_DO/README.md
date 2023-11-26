@@ -1,6 +1,6 @@
 ### Using Sonoff mini r2
 
-## Overview 
+## Overview
 In this example a remote relay is switch on and off according to the level of average CO2. This relay controls an extractor fan in a room, so when a level is superior to certain threshold (e.g. 1500 ppm) the fan is switched on until the level of CO2 gets down to certain threshold (e.g. 1000 ppm) acting like a hysteresis control.
 
 ## Sonoff mini r2

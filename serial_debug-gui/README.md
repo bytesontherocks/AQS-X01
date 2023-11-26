@@ -7,4 +7,3 @@ Ref: https://github.com/bytesontherocks/AQS-X01/blob/master/Board%20and%20microc
 ## Using poetry
 poetry install
 poetry run python main.py
-
