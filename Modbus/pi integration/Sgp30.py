@@ -1,8 +1,8 @@
 #AQS-X01 @ BytesOnTheRocks
 
 import time
-import minimalmodbus
-import ModbusRegisters
+import minimalmodbus # type: ignore
+import ModbusRegisters 
 
 def getSgp30Parameters(instrument, delay):
 

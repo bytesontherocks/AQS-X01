@@ -1,5 +1,5 @@
 import tkinter as  tk  # It is used to make Graphical User Interface.
-import serial
+import serial   # type: ignore
 import threading       # Threading in python is used to run multiple task or functions at the same time.
 
 # Idea from:

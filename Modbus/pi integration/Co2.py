@@ -1,7 +1,7 @@
 #AQS-X01 @ BytesOnTheRocks
 
 import time
-import minimalmodbus
+import minimalmodbus # type: ignore
 import ModbusRegisters
 
 def getCo2(instrument, delay):

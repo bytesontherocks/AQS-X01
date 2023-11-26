@@ -19,3 +19,9 @@ You are ready to integrate the read data into your application.
 poetry install
 poetry run python main.py
 
+## Running mypy
+poetry run mypy . --disallow-incomplete-defs
+
+## Running Ruff
+poetry run ruff check .
+

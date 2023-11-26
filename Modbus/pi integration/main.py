@@ -1,16 +1,16 @@
 #AQS-X01 @ BytesOnTheRocks
 
-import os
+#import os
 import sys
 import time
 
-import minimalmodbus
+import minimalmodbus # type: ignore
 
 import Configuration
 import Sht31
 import Co2
-import Sgp30
-import AQSX01_Conf
+#import Sgp30
+#import AQSX01_Conf
 
 # Allow long also in Python3
 # http://python3porting.com/noconv.html

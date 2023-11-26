@@ -10,6 +10,8 @@ packages = [{include = "aqs_x01_modbus"}]
 python = "^3.11"
 pyserial = "^3.5"
 minimalmodbus = "^2.1.1"
+mypy = "^1.7.1"
+ruff = "^0.1.6"
 
 [tool.poetry.scripts]
 start = "aqs-x01-modbus.main:main"
