@@ -1,11 +1,10 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <PubSubClient.h>
-#include "ModbusCrc.h"
-#include "ModbusRegisters.h"
+#include "modbusCrc.h"
+#include "modbusRegisters.h"
 #include "credentials.h"
 #include "mqtt.h"
-#include <String>
 
 // Replace by 2 if you aren't enable to use Serial Monitor... Don't forget to Rewire R1 to GPIO2!
 #define in_led 0

@@ -1,0 +1,62 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ESP-01: Build MQTT binary",
+      "type": "shell",
+      "command": "pio run -e mqtt",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "ESP-01: Flash MQTT",
+      "type": "shell",
+      "command": "pio run -e mqtt -t upload",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "ESP-01: Build remote-DO binary",
+      "type": "shell",
+      "command": "pio run -e remote_do",
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "ESP-01: Flash remote-DO",
+      "type": "shell",
+      "command": "pio run -e remote_do -t upload",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "ESP-01: Build Wi-Fi portal MQTT binary",
+      "type": "shell",
+      "command": "pio run -e wifi_portal_mqtt",
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "ESP-01: Flash Wi-Fi portal MQTT",
+      "type": "shell",
+      "command": "pio run -e wifi_portal_mqtt -t upload",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "ESP-01: List serial ports",
+      "type": "shell",
+      "command": "pio device list",
+      "problemMatcher": []
+    },
+    {
+      "label": "ESP-01: Erase flash",
+      "type": "shell",
+      "command": "pio run -e mqtt -t erase",
+      "problemMatcher": []
+    },
+    {
+      "label": "ESP-01: Serial monitor",
+      "type": "shell",
+      "command": "pio device monitor -b 115200",
+      "problemMatcher": []
+    }
+  ]
+}

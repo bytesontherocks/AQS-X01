@@ -1,0 +1,6 @@
+.pio/
+
+# Local network and broker settings. Start from the corresponding template.
+Examples/mqtt/credentials.h
+Examples/remote_DO/credentials.h
+Examples/wifi_portal_mqtt/mqtt_config.h
